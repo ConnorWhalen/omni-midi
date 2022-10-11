@@ -1,0 +1,16 @@
+# CMake/Build files
+CMakeCache.txt
+CMakeFiles
+Makefile
+RTMidiConfigUninstall.cmake
+cmake_install.cmake
+
+# omni executable
+omni
+
+# sprite resources
+*.aseprite
+
+# midi library
+rtmidi-*
+
