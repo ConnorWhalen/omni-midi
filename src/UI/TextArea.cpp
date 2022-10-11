@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-TextArea::TextArea() {
+TextArea::TextArea(const std::string fontFile) {
     this->offsetX = 0;
     this->offsetY = 0;
     this->message = nullptr;
@@ -11,7 +11,7 @@ TextArea::TextArea() {
         printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
     }
 
-    this->font = font = TTF_OpenFont("/System/Library/Fonts/Supplemental/Courier New.ttf", FONT_SIZE);
+    this->font = font = TTF_OpenFont(fontFile.c_str(), FONT_SIZE);
     if (font == nullptr) {
         printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
     }

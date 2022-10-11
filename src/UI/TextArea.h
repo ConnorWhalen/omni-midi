@@ -13,7 +13,7 @@ constexpr int FONT_SIZE = 12;
 
 class TextArea : public WindowArea {
 public:
-    TextArea();
+    TextArea(const std::string fontFile);
     void SetText(const std::string text, const SDL_Color color, SDL_Renderer* renderer);
     void Offset(const int offsetX, const int offsetY);
     void Clear();

@@ -18,8 +18,10 @@ constexpr int BUTTON_SPACING_Y = 16;
 class Button : public WindowArea {
 public:
     Button(SDL_Rect buttonRect, SDL_Renderer* renderer,
-           const std::string& onButtonImagePath, const std::string& offButtonImagePath, std::vector<Input*>* inputs,
-           ButtonIndex buttonIndex, const std::string top_title = "", const std::string bottom_title = "", const bool hasLight = false);
+           const std::string& onButtonImagePath, const std::string& offButtonImagePath,
+           std::vector<Input*>* inputs, ButtonIndex buttonIndex,
+           const std::string fontFile, const std::string top_title = "", const std::string bottom_title = "",
+           const bool hasLight = false);
     void SetTopTitle(const std::string text);
     void SetBottomTitle(const std::string text);
     void SetLight(bool lightOn);

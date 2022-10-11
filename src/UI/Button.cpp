@@ -3,8 +3,10 @@
 #include <SDL2_image/SDL_image.h>
 
 Button::Button(SDL_Rect buttonRect_, SDL_Renderer* renderer,
-               const std::string& onButtonImagePath, const std::string& offButtonImagePath, std::vector<Input*>* inputs,
-               ButtonIndex buttonIndex, const std::string top_title, const std::string bottom_title, const bool hasLight) {
+               const std::string& onButtonImagePath, const std::string& offButtonImagePath,
+               std::vector<Input*>* inputs, ButtonIndex buttonIndex,
+               const std::string fontFile, const std::string top_title, const std::string bottom_title,
+               const bool hasLight) {
     SDL_Surface* loadedSurface = IMG_Load(onButtonImagePath.c_str());
     this->onTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
     SDL_FreeSurface(loadedSurface);
@@ -19,8 +21,8 @@ Button::Button(SDL_Rect buttonRect_, SDL_Renderer* renderer,
     this->inputs = inputs;
     this->buttonIndex = buttonIndex;
 
-    this->top_text_area = new TextArea();
-    this->bottom_text_area = new TextArea();
+    this->top_text_area = new TextArea(fontFile);
+    this->bottom_text_area = new TextArea(fontFile);
     this->top_text_area->Offset(buttonRect.x + buttonRect.w/2, buttonRect.y - buttonRect.h/8);
     this->bottom_text_area->Offset(buttonRect.x + buttonRect.w/2, buttonRect.y + buttonRect.h + buttonRect.h/6);
     SetTopTitle(top_title);

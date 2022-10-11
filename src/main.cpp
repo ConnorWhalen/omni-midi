@@ -51,6 +51,7 @@ int main(int argc, char *argv[]) {
     Config config(config_file);
     bool isFullscreen = (bool) stoi(config.Get("fullscreen", "0"));
     int midiPort = stoi(config.Get("midiport", "0"));
+    std::string fontFile = config.Get("font", "/System/Library/Fonts/Supplemental/Courier New.ttf");
 
     SDL_Color Red = {255, 80, 80};
     SDL_Color White = {255, 255, 255};
@@ -128,9 +129,9 @@ int main(int argc, char *argv[]) {
         HARP_SIZE_Y
     };
 
-    auto majorLabel = new TextArea();
-    auto minorLabel = new TextArea();
-    auto sevenLabel = new TextArea();
+    auto majorLabel = new TextArea(fontFile);
+    auto minorLabel = new TextArea(fontFile);
+    auto sevenLabel = new TextArea(fontFile);
     majorLabel->Offset(24, 72);
     minorLabel->Offset(24, 134);
     sevenLabel->Offset(24, 196);
@@ -156,7 +157,8 @@ int main(int argc, char *argv[]) {
                 "sprites/omni-button-on.png",
                 "sprites/omni-button-off.png",
                 inputs,
-                i*CHORD_BUTTONS_COLS + j
+                i*CHORD_BUTTONS_COLS + j,
+                fontFile
             );
             window->AddWindowArea(buttons[i*CHORD_BUTTONS_COLS + j]);
         }
@@ -169,6 +171,7 @@ int main(int argc, char *argv[]) {
         "sprites/omni-button-off.png",
         inputs,
         MUTE_BUTTON_INDEX,
+        fontFile,
         "Mute"
     );
     window->AddWindowArea(buttons[MUTE_BUTTON_INDEX]);
@@ -180,6 +183,7 @@ int main(int argc, char *argv[]) {
         "sprites/omni-button-off.png",
         inputs,
         HOLD_CHORD_BUTTON_INDEX,
+        fontFile,
         "Hold Chords",
         "",
         true
@@ -193,6 +197,7 @@ int main(int argc, char *argv[]) {
         "sprites/omni-button-up-off.png",
         inputs,
         CHORD_OCTAVE_UP_BUTTON_INDEX,
+        fontFile,
         "Chord Octave"
     );
     window->AddWindowArea(buttons[CHORD_OCTAVE_UP_BUTTON_INDEX]);
@@ -204,6 +209,7 @@ int main(int argc, char *argv[]) {
         "sprites/omni-button-down-off.png",
         inputs,
         CHORD_OCTAVE_DOWN_BUTTON_INDEX,
+        fontFile,
         "",
         "0"
     );
@@ -216,6 +222,7 @@ int main(int argc, char *argv[]) {
         "sprites/omni-button-up-off.png",
         inputs,
         CHORD_VOLUME_UP_BUTTON_INDEX,
+        fontFile,
         "Chord Volume"
     );
     window->AddWindowArea(buttons[CHORD_VOLUME_UP_BUTTON_INDEX]);
@@ -227,6 +234,7 @@ int main(int argc, char *argv[]) {
         "sprites/omni-button-down-off.png",
         inputs,
         CHORD_VOLUME_DOWN_BUTTON_INDEX,
+        fontFile,
         "",
         "100"
     );
@@ -239,6 +247,7 @@ int main(int argc, char *argv[]) {
         "sprites/omni-button-up-off.png",
         inputs,
         HARP_VOLUME_UP_BUTTON_INDEX,
+        fontFile,
         "Harp Volume"
     );
     window->AddWindowArea(buttons[HARP_VOLUME_UP_BUTTON_INDEX]);
@@ -250,6 +259,7 @@ int main(int argc, char *argv[]) {
         "sprites/omni-button-down-off.png",
         inputs,
         HARP_VOLUME_DOWN_BUTTON_INDEX,
+        fontFile,
         "",
         "100"
     );
