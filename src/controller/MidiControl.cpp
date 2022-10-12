@@ -1,13 +1,13 @@
-#include "MidiController.h"
+#include "MidiControl.h"
 
 #include <vector>
 
-MidiController::MidiController(const int port) {
+MidiControl::MidiControl(const int port) {
     midi_out = new RtMidiOut();
     midi_out->openPort(port);
 }
 
-void MidiController::PlayNote(unsigned char pitch, unsigned char channel) {
+void MidiControl::PlayNote(unsigned char pitch, unsigned char channel) {
     std::vector<unsigned char> message;
     message.push_back(MIDI_NOTE_ON + channel);
     message.push_back(pitch);
@@ -15,7 +15,7 @@ void MidiController::PlayNote(unsigned char pitch, unsigned char channel) {
     midi_out->sendMessage(&message);
 }
 
-void MidiController::ReleaseNote(unsigned char pitch, unsigned char channel) {
+void MidiControl::ReleaseNote(unsigned char pitch, unsigned char channel) {
     std::vector<unsigned char> message;
     message.push_back(MIDI_NOTE_OFF + channel);
     message.push_back(pitch);
@@ -23,7 +23,7 @@ void MidiController::ReleaseNote(unsigned char pitch, unsigned char channel) {
     midi_out->sendMessage(&message);
 }
 
-void MidiController::SetVolume(unsigned char level, unsigned char channel) {
+void MidiControl::SetVolume(unsigned char level, unsigned char channel) {
     std::vector<unsigned char> message;
     message.push_back(MIDI_CONTROL_EVENT + channel);
     message.push_back(MIDI_CONTROL_VOLUME);

@@ -1,11 +1,13 @@
-#ifndef OMNI_CHORDCONTROLLER_H
-#define OMNI_CHORDCONTROLLER_H
+#ifndef OMNI_OMNICONTROLLER_H
+#define OMNI_OMNICONTROLLER_H
 
 #include <vector>
 
+#include "Controller.h"
+
 #include "../input/Input.h"
 #include "../UI/Button.h"
-#include "MidiController.h"
+#include "MidiControl.h"
 
 constexpr int MIDI_MAP[] {
 //  Db  Ab  Eb  Bb  F   C   G   D   A   E   B   F#
@@ -44,9 +46,9 @@ struct MidiNote {
     int timestamp;
 };
 
-class ChordController {
+class OmniController : public Controller {
 public:
-    ChordController(std::vector<Input*>* inputs, Button *buttons[], const int midiPort);
+    OmniController(std::vector<Input*>* inputs, Button *buttons[], const int midiPort);
     void Update();
     void Destroy();
 private:
@@ -64,7 +66,7 @@ private:
     int octave_offset = 0;
     int chordVolumeLevel = 100;
     int harpVolumeLevel = 100;
-    MidiController* midiController;
+    MidiControl* midiController;
     Button *buttons[TOTAL_BUTTONS];
     bool hold_chord_mode = false;
 };

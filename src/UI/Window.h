@@ -18,7 +18,7 @@ public:
     Window(int width, int height, bool isFullscreen);
     void Render();
     void Destroy();
-    SDL_Renderer* GetRenderer() {return renderer;};
+    SDL_Renderer* GetRenderer() const {return renderer;};
     void AddWindowArea(WindowArea* windowArea);
 protected:
     int width;

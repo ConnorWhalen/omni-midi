@@ -5,11 +5,13 @@ bool TouchInput::Intersecting(TouchRect rect, float x, float y) {
             x > rect.left && x < rect.left+rect.width);
 }
 
-TouchInput::TouchInput(SDL_Rect buttonRects[], SDL_Rect harpRect) {
+TouchInput::TouchInput() {
     this->lastZero = 0;
     this->current.buttonData = 0;
     this->current.harpData = -1;
+}
 
+void TouchInput::Configure(SDL_Rect buttonRects[], SDL_Rect harpRect) {
     for (int i = 0; i < TOTAL_BUTTONS; i++) {
         this->rects[i] = TouchInput::SDLRectToTouchRect(buttonRects[i]);
     }

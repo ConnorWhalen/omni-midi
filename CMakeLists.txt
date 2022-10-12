@@ -28,10 +28,15 @@ find_package(Threads REQUIRED)
 
 add_executable(omni
         # controller
-        src/controller/ChordController.cpp
-        src/controller/ChordController.h
-        src/controller/MidiController.cpp
-        src/controller/MidiController.h
+        src/controller/Controller.h
+        src/controller/MidiControl.cpp
+        src/controller/MidiControl.h
+        src/controller/OmniController.cpp
+        src/controller/OmniController.h
+        # device
+        src/device/Device.h
+        src/device/OmniDevice.cpp
+        src/device/OmniDevice.h
         # input
         src/input/Input.h
         src/input/KeyboardInput.cpp

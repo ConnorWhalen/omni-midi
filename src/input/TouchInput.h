@@ -24,7 +24,8 @@ public:
         };
     }
 
-    TouchInput(SDL_Rect buttonRects[], SDL_Rect harpRect);
+    TouchInput();
+    void Configure(SDL_Rect buttonRects[], SDL_Rect harpRect);
     InputData Read() const override;
     void Apply(SDL_Event e) override;
 

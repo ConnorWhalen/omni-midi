@@ -1,11 +1,11 @@
-#include "ChordController.h"
+#include "OmniController.h"
 
 #include <algorithm>
 
-ChordController::ChordController(std::vector<Input*>* inputs, Button *buttons[], const int midiPort) : inputs(inputs) {
+OmniController::OmniController(std::vector<Input*>* inputs, Button *buttons[], const int midiPort) : inputs(inputs) {
     this->heldChordNotes = new std::vector<int>();
     this->heldHarpNotes = new std::vector<MidiNote>();
-    this->midiController = new MidiController(midiPort);
+    this->midiController = new MidiControl(midiPort);
 
     for (int i = 0; i < TOTAL_BUTTONS; i++) {
         this->buttons[i] = buttons[i];
@@ -21,7 +21,7 @@ ChordController::ChordController(std::vector<Input*>* inputs, Button *buttons[],
     buttons[HARP_VOLUME_DOWN_BUTTON_INDEX]->SetBottomTitle(std::to_string(harpVolumeLevel));
 }
 
-void ChordController::Update() {
+void OmniController::Update() {
     InputData currentInput = (InputData) {0, (char) -1};
     for (Input* input : *inputs) {
         InputData inputData = input->Read();
@@ -57,7 +57,7 @@ void ChordController::Update() {
     previousInput = currentInput;
 }
 
-void ChordController::ButtonPressed(ButtonIndex buttonIndex, const ButtonData currentInput) {
+void OmniController::ButtonPressed(ButtonIndex buttonIndex, const ButtonData currentInput) {
     if (buttonIndex < TOTAL_CHORD_BUTTONS) {
         int button_chord_index = buttonIndex % CHORD_BUTTONS_COLS;
         unsigned char chord_type = 0;
@@ -134,7 +134,7 @@ void ChordController::ButtonPressed(ButtonIndex buttonIndex, const ButtonData cu
     }
 }
 
-void ChordController::ButtonReleased(ButtonIndex buttonIndex, const ButtonData currentInput) {
+void OmniController::ButtonReleased(ButtonIndex buttonIndex, const ButtonData currentInput) {
     if (buttonIndex < TOTAL_CHORD_BUTTONS && !hold_chord_mode) {
         int button_chord_index = buttonIndex % CHORD_BUTTONS_COLS;
         unsigned char chord_type = 0;
@@ -154,7 +154,7 @@ void ChordController::ButtonReleased(ButtonIndex buttonIndex, const ButtonData c
     }
 }
 
-void ChordController::HarpPressed(const HarpData currentInput) {
+void OmniController::HarpPressed(const HarpData currentInput) {
     // printf("HARP! %d\n", chordIndex);
     if (harpChordType == 0) return;
 
@@ -182,7 +182,7 @@ void ChordController::HarpPressed(const HarpData currentInput) {
     // printf("MIDI PITCH: %d\n", midiPitch);
 }
 
-void ChordController::PlayChord(int chordIndex, unsigned char chordType) {
+void OmniController::PlayChord(int chordIndex, unsigned char chordType) {
     // Get chord notes
     // printf("PLAY CHORD: %d, %x\n", chordIndex, chordType);
     this->chordIndex = chordIndex;
@@ -220,7 +220,7 @@ void ChordController::PlayChord(int chordIndex, unsigned char chordType) {
     // printf("\n");
 }
 
-void ChordController::Destroy() {
+void OmniController::Destroy() {
     for (int note : *heldChordNotes) {
         midiController->ReleaseNote(note);
     }
