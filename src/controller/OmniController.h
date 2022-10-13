@@ -41,16 +41,11 @@ constexpr int CHORD_NOTES = 4;
 
 constexpr int HARP_NOTE_DURATION = 60;
 
-struct MidiNote {
-    int pitch;
-    int timestamp;
-};
-
 class OmniController : public Controller {
 public:
     OmniController(std::vector<Input*>* inputs, Button *buttons[], const int midiPort);
-    void Update();
-    void Destroy();
+    virtual void Update() override;
+    virtual void Destroy() override;
 private:
     void ButtonPressed(ButtonIndex buttonIndex, const ButtonData currentInput);
     void ButtonReleased(ButtonIndex buttonIndex, const ButtonData currentInput);

@@ -5,6 +5,7 @@
 #include <yaml-cpp/yaml.h>
 
 #include "Config.h"
+#include "device/GhDevice.h"
 #include "device/OmniDevice.h"
 #include "input/KeyboardInput.h"
 #include "input/TouchInput.h"
@@ -49,6 +50,7 @@ int main(int argc, char *argv[]) {
     }
 
     Config config(config_file);
+    std::string deviceName = config.Get("device", "omni");
     bool isFullscreen = (bool) stoi(config.Get("fullscreen", "0"));
     int midiPort = stoi(config.Get("midiport", "0"));
     std::string fontFile = config.Get("font", "/System/Library/Fonts/Supplemental/Courier New.ttf");
@@ -68,7 +70,14 @@ int main(int argc, char *argv[]) {
     inputs->push_back(&keyboardInput);
     inputs->push_back(&touchInput);
 
-    device = new OmniDevice(window, inputs, touchInput, midiPort, fontFile);
+    if (deviceName == "omni") {
+        window->setBg("sprites/omni-bg.png");
+        device = new OmniDevice(window, inputs, touchInput, midiPort, fontFile);
+    }
+    else if (deviceName == "gh") {
+        window->setBg("sprites/gh-bg.png");
+        device = new GhDevice(window, inputs, touchInput, midiPort, fontFile);
+    }
 
     bool quit = false;
     SDL_Event inputEvent;

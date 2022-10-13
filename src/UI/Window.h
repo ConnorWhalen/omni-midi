@@ -1,6 +1,7 @@
 #ifndef OMNI_WINDOW_H
 #define OMNI_WINDOW_H
 
+#include <string>
 #include <vector>
 
 #include <SDL2/SDL.h>
@@ -16,6 +17,7 @@ constexpr int GAME_HEIGHT = 480;
 class Window {
 public:
     Window(int width, int height, bool isFullscreen);
+    void setBg(std::string bgFilename);
     void Render();
     void Destroy();
     SDL_Renderer* GetRenderer() const {return renderer;};

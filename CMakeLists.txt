@@ -29,12 +29,16 @@ find_package(Threads REQUIRED)
 add_executable(omni
         # controller
         src/controller/Controller.h
+        src/controller/GhController.cpp
+        src/controller/GhController.h
         src/controller/MidiControl.cpp
         src/controller/MidiControl.h
         src/controller/OmniController.cpp
         src/controller/OmniController.h
         # device
         src/device/Device.h
+        src/device/GhDevice.cpp
+        src/device/GhDevice.h
         src/device/OmniDevice.cpp
         src/device/OmniDevice.h
         # input
@@ -48,6 +52,8 @@ add_executable(omni
         src/UI/Button.h
         src/UI/Harp.cpp
         src/UI/Harp.h
+        src/UI/Sprite.cpp
+        src/UI/Sprite.h
         src/UI/TextArea.cpp
         src/UI/TextArea.h
         src/UI/Window.cpp

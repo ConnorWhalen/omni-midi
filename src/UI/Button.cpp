@@ -16,6 +16,7 @@ Button::Button(SDL_Rect buttonRect_, SDL_Renderer* renderer,
     SDL_FreeSurface(loadedSurface);
 
     this->renderer = renderer;
+    // Everything is halved on MacOS for some reason. Do this instead to fix it
     // this->buttonRect = (SDL_Rect) { buttonRect_.x*2, buttonRect_.y*2, buttonRect_.w*2, buttonRect_.h*2 };
     this->buttonRect = (SDL_Rect) { buttonRect_.x, buttonRect_.y, buttonRect_.w, buttonRect_.h };
     this->inputs = inputs;

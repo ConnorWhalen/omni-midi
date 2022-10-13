@@ -15,13 +15,15 @@ Window::Window(int width, int height, bool isFullscreen) {
     this->rect = (SDL_Rect) {0, 0, width, height};
     this->windowAreas = new std::vector<WindowArea*>();
 
-    SDL_Surface* loadedSurface = IMG_Load("sprites/omni-bg.png");
-    this->bgTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-    SDL_FreeSurface(loadedSurface);
-
     if (isFullscreen) {
         SDL_SetWindowFullscreen(this->window, SDL_WINDOW_FULLSCREEN);
     }
+}
+
+void Window::setBg(std::string bgFilename) {
+    SDL_Surface* loadedSurface = IMG_Load(bgFilename.c_str());
+    this->bgTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+    SDL_FreeSurface(loadedSurface);
 }
 
 void Window::Render() {
