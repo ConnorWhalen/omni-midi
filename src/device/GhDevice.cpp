@@ -146,8 +146,8 @@ GhDevice::GhDevice(Window* window, std::vector<Input*>* inputs, TouchInput &touc
 
     Sprite *holdTailSprite = new Sprite(
         (SDL_Rect) {
-            700-36,
-            30+300+30+50-24,
+            GH_BUTTON_PADDING_X + GH_BUTTON_SIZE_X/2 - 36,
+            GH_BUTTON_PADDING_Y + 3*(GH_BUTTON_SIZE_Y + GH_BUTTON_SPACING_Y) + GH_BUTTON_SIZE_Y/2 - 24,
             96,
             48
         },
@@ -158,8 +158,8 @@ GhDevice::GhDevice(Window* window, std::vector<Input*>* inputs, TouchInput &touc
 
     Sprite *holdNoteSprite = new Sprite(
         (SDL_Rect) {
-            700-48,
-            30+300+30+50-24,
+            GH_BUTTON_PADDING_X + GH_BUTTON_SIZE_X/2 - 48,
+            GH_BUTTON_PADDING_Y + 3*(GH_BUTTON_SIZE_Y + GH_BUTTON_SPACING_Y) + GH_BUTTON_SIZE_Y/2 - 24,
             48,
             48
         },
@@ -170,8 +170,8 @@ GhDevice::GhDevice(Window* window, std::vector<Input*>* inputs, TouchInput &touc
 
     Sprite *hopoSprite = new Sprite(
         (SDL_Rect) {
-            700-24,
-            30+200+20+50-24,
+            GH_BUTTON_PADDING_X + GH_BUTTON_SIZE_X/2 - 24,
+            GH_BUTTON_PADDING_Y + 2*(GH_BUTTON_SIZE_Y + GH_BUTTON_SPACING_Y) + GH_BUTTON_SIZE_Y/2 - 24,
             48,
             48
         },
@@ -182,8 +182,8 @@ GhDevice::GhDevice(Window* window, std::vector<Input*>* inputs, TouchInput &touc
 
     Sprite *tapSprite = new Sprite(
         (SDL_Rect) {
-            700-24,
-            30+100+10+50-24,
+            GH_BUTTON_PADDING_X + GH_BUTTON_SIZE_X/2 - 24,
+            GH_BUTTON_PADDING_Y + GH_BUTTON_SIZE_Y + GH_BUTTON_SPACING_Y + GH_BUTTON_SIZE_Y/2 - 24,
             48,
             48
         },
@@ -194,8 +194,8 @@ GhDevice::GhDevice(Window* window, std::vector<Input*>* inputs, TouchInput &touc
 
     Sprite *starSprite = new Sprite(
         (SDL_Rect) {
-            700-32,
-            30+50-24,
+            GH_BUTTON_PADDING_X + GH_BUTTON_SIZE_X/2 - 32,
+            GH_BUTTON_PADDING_Y + GH_BUTTON_SIZE_Y/2 - 24,
             64,
             48
         },
